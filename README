@@ -1,6 +1,6 @@
-# Project Purpose
+Project Purpose
 To produce cultural artifacts all related to an anthropological/cultural concept input by the user. For example, "child rearing", "eyeliner", "democracy", "femininity" - should produce an array of cultural artifacts exploring these concepts across history in different countries and contexts, through art and archeology.
 
-** Data Sets: **
+Data Sets: 
 
 https://metmuseum.github.io/ The Metropolitan Museum of Art Collection API
