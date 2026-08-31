@@ -26,6 +26,7 @@ object_response = requests.get(object_decode)
 
 #Selected the most relevant attributes of the object to make a neat summary of the object information
 print("Title:", object_response.json()['title'])
+##this causes an error when the title field is empty, need to add a try/except block to handle nulls
 print("Object Name:", object_response.json()['objectName'])
 print("Department:", object_response.json()['department'])
 print("Culture:", object_response.json()['culture'])
