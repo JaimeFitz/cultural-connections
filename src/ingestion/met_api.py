@@ -1,12 +1,14 @@
 import requests
 
-url = 'https://collectionapi.metmuseum.org/public/collection/v1/search'
+url = 'https://collectionapi.metmuseum.org/public/collection/v1.1/search'
+#Changed 10/2/2026 to v1.1/search because Solr backed search was retired, v 1.1 replaces this with an Elastic-backed search, paginated via offset and limit
 
 print("Please enter a search term for the MET collection:")
 keyword = input()
 
-search = f'https://collectionapi.metmuseum.org/public/collection/v1/search?q={keyword}'
+search = f'https://collectionapi.metmuseum.org/public/collection/v1.1/search?q={keyword}'
 #Using the MET API keyword search to look for objects that are tagged with a specific keyword
+
 
 response = requests.get(search)
 
@@ -19,7 +21,7 @@ object_ID = response.json()['objectIDs'][0]
 print(object_ID)
 
 
-object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_ID}'
+object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1.1/objects/{object_ID}'
 #fetches information from the first object using the object ID from the search results
 
 object_response = requests.get(object_decode)
