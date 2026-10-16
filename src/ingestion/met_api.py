@@ -26,7 +26,12 @@ object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1/objec
 
 object_response = requests.get(object_decode)
 print(object_decode)
+
+##print("Number of objects returned: " , len(response.json()['objectIDs']))
+##The above line was taken out because the count tops out at 100, and I realized that the 'total' field already returns the total number of objects that fit the search
+
 #Selected the most relevant attributes of the object to make a neat summary of the object information
+print("Number of objects returned: ", response.json()['total'])
 print("Title:", object_response.json()['title'])
 ##consider adding a try/except block to handle nulls
 print("Object Name:", object_response.json()['objectName'])
