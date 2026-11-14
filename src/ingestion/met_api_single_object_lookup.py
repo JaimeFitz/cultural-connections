@@ -30,6 +30,12 @@ print(object_decode)
 ##print("Number of objects returned: " , len(response.json()['objectIDs']))
 ##The above line was taken out because the count tops out at 100, and I realized that the 'total' field already returns the total number of objects that fit the search
 
+if object_response.json()['primaryImage'] == "":
+  object_ID = response.json()['objectIDs'][1]
+  object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_ID}'
+  object_response = requests.get(object_decode)
+##want to make a conditional so the user always gets an image if possible, it's not satisfying otherwise
+
 #Selected the most relevant attributes of the object to make a neat summary of the object information
 print("Number of objects returned: ", response.json()['total'])
 print("Title:", object_response.json()['title'])
