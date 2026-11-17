@@ -21,20 +21,32 @@ object_ID = response.json()['objectIDs'][0]
 print(object_ID)
 
 
-object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1.1/objects/{object_ID}'
+object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_ID}'
 #fetches information from the first object using the object ID from the search results
 
 object_response = requests.get(object_decode)
+print(object_decode)
+
+##print("Number of objects returned: " , len(response.json()['objectIDs']))
+##The above line was taken out because the count tops out at 100, and I realized that the 'total' field already returns the total number of objects that fit the search
+
+if object_response.json()['primaryImage'] == "":
+  object_ID = response.json()['objectIDs'][1]
+  object_decode = f'https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_ID}'
+  object_response = requests.get(object_decode)
+##want to make a conditional so the user always gets an image if possible, it's not satisfying otherwise
 
 #Selected the most relevant attributes of the object to make a neat summary of the object information
+print("Number of objects returned: ", response.json()['total'])
 print("Title:", object_response.json()['title'])
-##this causes an error when the title field is empty, need to add a try/except block to handle nulls
+##consider adding a try/except block to handle nulls
 print("Object Name:", object_response.json()['objectName'])
 print("Department:", object_response.json()['department'])
 print("Culture:", object_response.json()['culture'])
 print("Period:", object_response.json()['period'])
 print("Primary Image:", object_response.json()['primaryImage'])
-
+print("Object URL:", object_response.json()['objectURL'])
+print("Learn More:", object_response.json()['objectWikidata_URL'])
 #Next steps: Decide if it makes sense to iterate through the array to fetch all object information for all object IDs returned from the search
 #It would be ideal to be able to display the images in the Primary Image field and have the wiki links readily available for the user after search
 #Identify which object attributes are most relevant to the model in progress to make the most meaningful connections between objects
